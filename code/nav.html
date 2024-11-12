@@ -152,9 +152,8 @@
 			
 			var a = $(this).find("a:first")[0];
 			
-						console.log("/"+$(a).attr("href"))
 			
-			if("/2024/"+$(a).attr("href") === window.location.pathname) {
+			if("/"+$(a).attr("href") === window.location.pathname) {
 
 				$(this).addClass("active");
 			} else {
