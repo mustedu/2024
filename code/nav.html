@@ -163,19 +163,28 @@
 	};
 
 	$(function() {
-		$(".nl").find("li").each(function() {
-			
-			var a = $(this).find("a:first")[0];
-			
-			
-			if("/"+$(a).attr("href") === window.location.pathname) {
+		$(document).ready(function() {
+    // 获取当前页面的文件名（如 "organizers.html"）
+    const currentPath = window.location.pathname;
+    const currentFile = currentPath.split('/').pop(); 
 
-				$(this).addClass("active");
-			} else {
-				
-				$(this).removeClass("active");
-			}
-		});
+    // 遍历导航项
+    $(".nl").find("li").each(function() {
+        const $li = $(this);
+        const $a = $li.find("a:first");
+        const href = $a.attr("href");
+
+        // 提取导航链接的文件名（兼容相对路径和绝对路径）
+        const navFile = href.split('/').pop();
+
+        // 比较文件名，匹配则添加 active 类
+        if (navFile === currentFile) {
+            $li.addClass("active");
+        } else {
+            $li.removeClass("active");
+        }
+    });
+});
 
 		ec();
 		headerMobileMenu();
